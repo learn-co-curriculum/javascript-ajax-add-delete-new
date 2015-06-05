@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  get "/givemedata" => "languages#index"
+  root "languages#main"
+  delete "/languages/:id" => "languages#destroy"
+  get "/languages" => "languages#index"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

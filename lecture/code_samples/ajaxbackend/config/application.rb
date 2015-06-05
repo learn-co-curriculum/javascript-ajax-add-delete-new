@@ -23,7 +23,7 @@ module Ajaxbackend
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.action_dispatch.default_headers = {
         'Access-Control-Allow-Origin' => '*',
-        'Access-Control-Request-Method' => %w{GET POST DELETE}.join(",") # or whatever else you would like to allow
+        'Access-Control-Request-Method' => %w{GET POST DELETE OPTIONS}.join(",") # or whatever else you would like to allow
     }
     config.active_record.raise_in_transactional_callbacks = true
   end

@@ -1,4 +1,3 @@
-var domain = 'http://localhost:3000' 
 function liTemplate(id, input, details){
   return '<li class="language" data-details="' +
   details +
@@ -12,13 +11,14 @@ function detailsTemplate(details){
   details +
   '</div>';
 }
+
 function appendToUl(ul, item) {
     ul.append(liTemplate(item.id, item.name, item.details));
 }
 
 $(document).ready(function() {
   $languages = $(".languages");
-  $.getJSON(domain + "/givemedata", function(languages) {
+  $.getJSON("/languages", function(languages) {
     languages.forEach(function(item) {
       appendToUl($languages, item);
     })
@@ -40,14 +40,15 @@ function addDeleteHandlers() {
     var self = this;
     var id = $(this).data('id');
     $.ajax({
-        url: domain + '/languages/' + id + ".json",
-        type: "POST"
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        url: '/languages/' + id,
+        type: "DELETE"
     }).done(function(data) {
-        $(self).parent('.course').remove();
+        $(self).parent('.language').remove();
     })
   })
 }
-  $('#new-course').submit(function(event) {
+  $('#new-language').submit(function(event) {
       event.preventDefault();
       // need to add a form to the html
   });
