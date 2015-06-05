@@ -1,39 +1,32 @@
-* What is the arguments object?
-  * an array like object
+Starting the 3rd week of JS
+* procedural js/functional
+* OO
+* jQuery
+We're about to make a dramatic shift in how we architect and think of webapps
+* What is your mental model of a webapp?
+  * Have students draw their mental model
 
-* What is an array like object?
+Ask how this differs from iOS?
+* r0ml advocates getting rid of the middleware completely (rails)
+Offer the historical perspective of
+* cycles of thin vs thick client
+  * started with thin client -> mainframe
+  * moved to thick client (laptop/desktop)
+  * moving to thin client (laptop) with cloud computing
+    * losing your computer, you lose almost nothing
+    * evernote, google docs, etc
+Ajax stands for Async Javascript and XML
+* XMLHttpRequest is the official name in the browsers spec
+  * first implemented by internet explorer
+Ajax represents a move towards a...
+* thick client / dumb server model
+* twitter tried going all ajax and went back because rendering all HTML on the client was too slow
+The big question is...
+* where does HTML rendering happen?
+* the way we've been doing it, we've done rendering on the server side
+ * HTML rendering means generating long strings of HTML (erb templates -> essentially string interpolation)
+ * Ajax often moves that to the client but not necessarily, you can still have the server generate HTML and send it back to you.
 
-Take this plain object as an example.
-```javascript
-var my_object = {
-    '0': 'zero',
-    '1': 'one',
-    '2': 'two',
-    '3': 'three',
-    '4': 'four',
-    length: 5
-};
-
-
-// the this object must have a length method, and []
-Array.prototype.slice = function(begin, end) {
-  var new_array = [];
-  var i = begin;
-  var real_end = end ? end : this.length
-  for (i = 0; i < real_end; i++) {
-    new_array.push(this[i]);
-  }
-  return new_array;
-}
-
-function test() {
-  return [].slice.call(arguments, 0, 2)
-}
-
-test("a", "b", "c")
-
-```
-
-
-
+ coding
+ use app i built in the jquery lecture but add ajax to pull data from the server
 
